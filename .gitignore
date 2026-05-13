@@ -1,0 +1,33 @@
+# ── C++ / CMake ──────────────────────────────────────────────────────────────
+build/
+cmake-build-*/
+*.o
+*.a
+*.so
+*.out
+*.exe
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# ── React / Node ──────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.next/
+.vite/
+*.local
+
+# ── Environment & secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── OS / Editor ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
