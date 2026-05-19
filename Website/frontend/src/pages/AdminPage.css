@@ -1,0 +1,432 @@
+.admin-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tab-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--bg);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.log-arrow {
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.export-type-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.type-attendance {
+  background: rgba(100, 180, 255, 0.15);
+  color: #64b4ff;
+  border: 1px solid rgba(100, 180, 255, 0.3);
+}
+
+.type-override-log {
+  background: rgba(255, 184, 0, 0.12);
+  color: var(--primary);
+  border: 1px solid rgba(255, 184, 0, 0.25);
+}
+
+.empty-logs {
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.sortable-th {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sortable-th:hover {
+  color: var(--text);
+}
+
+.sort-icon {
+  display: inline-block;
+  margin-left: 0.3rem;
+  font-size: 0.7rem;
+}
+
+.sort-icon.inactive {
+  opacity: 0.3;
+}
+
+.sort-icon.active {
+  color: var(--primary);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-present {
+  background: rgba(76, 175, 80, 0.15);
+  color: #66bb6a;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-absent {
+  background: rgba(244, 67, 54, 0.12);
+  color: #ef5350;
+  border: 1px solid rgba(244, 67, 54, 0.25);
+}
+
+
+.admin-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.section-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-table thead tr {
+  background: var(--surface2);
+}
+
+.admin-table th {
+  padding: 0.75rem 1.25rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.admin-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+.admin-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255, 184, 0, 0.04);
+}
+
+.admin-table td {
+  padding: 0.85rem 1.25rem;
+  color: var(--text);
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.btn-row-edit,
+.btn-row-delete {
+  padding: 0.3rem 0.7rem;
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn-row-edit {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.btn-row-edit:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.btn-row-delete {
+  background: transparent;
+  color: #ef5350;
+  border-color: rgba(244, 67, 54, 0.3);
+}
+
+.btn-row-delete:hover {
+  background: rgba(244, 67, 54, 0.1);
+  border-color: rgba(244, 67, 54, 0.5);
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+.modal-sm {
+  max-width: 360px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 0;
+}
+
+.modal-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.modal-close:hover {
+  color: var(--text);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.modal-form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.modal-form .form-field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-form .form-field input,
+.modal-form .form-field select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.modal-form .form-field input:focus,
+.modal-form .form-field select:focus {
+  border-color: var(--primary);
+}
+
+.modal-form .form-field input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.45;
+}
+
+.form-error {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.25);
+  color: #ef5350;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.confirm-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 1rem 1.5rem 0.5rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.confirm-text strong {
+  color: var(--text);
+}
+
+/* Shared button styles */
+.btn-primary {
+  background: var(--primary);
+  color: var(--bg);
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-secondary:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.btn-danger {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-danger:hover {
+  background: #b71c1c;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.class-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.class-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.class-checkbox-item input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.class-room-hint {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}

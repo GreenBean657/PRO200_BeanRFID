@@ -1,0 +1,247 @@
+.attendance-wrapper {
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.table-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.filter-group select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+  min-width: 130px;
+}
+
+.filter-group select:focus {
+  border-color: var(--primary);
+}
+
+.table-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.record-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.btn-mask-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.btn-mask-toggle:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.masked-id {
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.btn-export {
+  background: var(--primary);
+  color: var(--bg);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-export:hover {
+  background: var(--primary-dark);
+}
+
+.btn-export:active {
+  transform: scale(0.97);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.attendance-table thead tr {
+  background: var(--surface2);
+}
+
+.attendance-table th {
+  padding: 0.75rem 1.25rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.attendance-table th.sortable {
+  cursor: pointer;
+}
+
+.attendance-table th.sortable:hover {
+  color: var(--text);
+}
+
+.sort-icon {
+  display: inline-block;
+  margin-left: 0.3rem;
+  font-size: 0.7rem;
+}
+
+.sort-icon.inactive {
+  opacity: 0.3;
+}
+
+.sort-icon.active {
+  color: var(--primary);
+}
+
+.attendance-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+.attendance-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.attendance-table tbody tr:hover {
+  background: rgba(255, 184, 0, 0.04);
+}
+
+.attendance-table td {
+  padding: 0.85rem 1.25rem;
+  color: var(--text);
+}
+
+.monospace {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-present {
+  background: rgba(76, 175, 80, 0.15);
+  color: #66bb6a;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-absent {
+  background: rgba(244, 67, 54, 0.12);
+  color: #ef5350;
+  border: 1px solid rgba(244, 67, 54, 0.25);
+}
+
+.row-absent td {
+  opacity: 0.6;
+}
+
+
+.btn-override {
+  padding: 0.28rem 0.7rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.btn-override:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.override-present {
+  background: rgba(76, 175, 80, 0.12);
+  color: #66bb6a;
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.override-present:hover:not(:disabled) {
+  background: rgba(76, 175, 80, 0.22);
+}
+
+.override-absent {
+  background: rgba(244, 67, 54, 0.1);
+  color: #ef5350;
+  border-color: rgba(244, 67, 54, 0.25);
+}
+
+.override-absent:hover:not(:disabled) {
+  background: rgba(244, 67, 54, 0.18);
+}
+
+.empty-row {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem !important;
+  font-style: italic;
+}

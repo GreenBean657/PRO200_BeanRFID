@@ -1,0 +1,114 @@
+:root {
+  --primary:       #FFB800;
+  --primary-dark:  #CC9400;
+  --bg:            #0D0D0D;
+  --surface:       #181818;
+  --surface2:      #222222;
+  --border:        #2E2E2E;
+  --text:          #F0F0F0;
+  --text-muted:    #888888;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Shared utility classes referenced by multiple components */
+.monospace {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+
+.navbar-role-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.role-admin {
+  background: rgba(255, 184, 0, 0.18);
+  color: var(--primary);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+}
+
+.role-teacher {
+  background: rgba(100, 180, 255, 0.15);
+  color: #64b4ff;
+  border: 1px solid rgba(100, 180, 255, 0.3);
+}
+
+.record-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.loading-state {
+  color: var(--text-muted);
+}
+
+.error-state {
+  color: #ef5350;
+  background: rgba(244, 67, 54, 0.06);
+  border-color: rgba(244, 67, 54, 0.2);
+}
+
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+
+.page-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}

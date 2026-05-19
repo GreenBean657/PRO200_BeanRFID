@@ -1,0 +1,126 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border-bottom: 2px solid var(--primary);
+  padding: 0 2rem;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.navbar-logo {
+  width: 32px;
+  height: 32px;
+  background: var(--primary);
+  color: var(--bg);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.navbar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+}
+
+.navbar-school {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding-left: 0.4rem;
+  border-left: 1px solid var(--border);
+  margin-left: 0.2rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.navbar-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s, background 0.15s;
+}
+
+.navbar-link:hover {
+  color: var(--text);
+  background: var(--surface2);
+}
+
+.navbar-link.active {
+  color: var(--primary);
+  background: rgba(255, 184, 0, 0.12);
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar-user-name {
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+.navbar-role-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.role-admin {
+  background: rgba(255, 184, 0, 0.18);
+  color: var(--primary);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+}
+
+.role-teacher {
+  background: rgba(100, 180, 255, 0.15);
+  color: #64b4ff;
+  border: 1px solid rgba(100, 180, 255, 0.3);
+}
+
+.role-student {
+  background: rgba(100, 220, 140, 0.15);
+  color: #64dc8c;
+  border: 1px solid rgba(100, 220, 140, 0.3);
+}
+
+.navbar-logout {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.navbar-logout:hover {
+  border-color: #e05555;
+  color: #e05555;
+}
