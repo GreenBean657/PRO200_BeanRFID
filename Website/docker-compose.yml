@@ -1,29 +1,11 @@
 services:
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${PASSWORD}
-      POSTGRES_DB: beanrfid
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
   backend:
     build: ./backend
     ports:
       - "8000:8000"
     environment:
       PORT: 8000
-      DATABASE_URL: postgresql://postgres:${PASSWORD}@db:5432/beanrfid
-    depends_on:
-      db:
-        condition: service_healthy
+      DATABASE_URL: postgresql://postgres:${PASSWORD}@${DB_HOST}:5432/beanrfid
 
   frontend:
     build: ./frontend
@@ -31,6 +13,3 @@ services:
       - "3000:80"
     depends_on:
       - backend
-
-volumes:
-  pgdata:

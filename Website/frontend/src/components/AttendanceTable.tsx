@@ -178,9 +178,23 @@ export default function AttendanceTable({ records, canExport, alwaysMaskIds, onE
             ) : (
               sorted.map(record => {
                 const isPending = pendingId === record.id;
+                const notInSystem = record.enrolled === false;
+                const rowClass = [record.present ? '' : 'row-absent', notInSystem ? 'row-unenrolled' : '']
+                  .filter(Boolean)
+                  .join(' ');
                 return (
-                  <tr key={record.id} className={record.present ? '' : 'row-absent'}>
-                    <td>{record.studentName}</td>
+                  <tr key={record.id} className={rowClass}>
+                    <td>
+                      {record.studentName}
+                      {notInSystem && (
+                        <span
+                          className="badge-unenrolled"
+                          title="Scanned in / here, but not on this room's roster — not in the system"
+                        >
+                          ⚠ Not in system
+                        </span>
+                      )}
+                    </td>
                     <td className="monospace">
                       {maskIds
                         ? <span className="masked-id">{record.studentId.slice(0, 3)}{'•'.repeat(record.studentId.length - 3)}</span>

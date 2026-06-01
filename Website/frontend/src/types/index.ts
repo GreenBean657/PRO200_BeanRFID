@@ -16,6 +16,7 @@ export interface AttendanceRecord {
   classId: string; // e.g. "CSC220" — always 6 characters
   room: string;    // 3-digit room number, e.g. "101"
   present: boolean;
+  enrolled?: boolean; // false when scanned in but not on this room's roster ("here, but not in the system")
   arrivedAt?: string; // ISO 8601 — only set when present === true
 }
 

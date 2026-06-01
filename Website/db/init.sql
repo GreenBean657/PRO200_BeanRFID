@@ -21,6 +21,9 @@ CREATE TABLE attendance (
     class_id     VARCHAR(10)  NOT NULL,
     room_id      VARCHAR(5)   REFERENCES rooms(id),
     present      BOOLEAN      NOT NULL DEFAULT FALSE,
+    -- FALSE when a scan created this row for a student who was not on the
+    -- room's roster: they are "here, but not in the system".
+    enrolled     BOOLEAN      NOT NULL DEFAULT TRUE,
     arrived_at   TIMESTAMPTZ,
     created_at   TIMESTAMPTZ  DEFAULT NOW()
 );
@@ -39,6 +42,16 @@ CREATE TABLE export_logs (
     exported_by  VARCHAR(100) NOT NULL,
     export_type  VARCHAR(20)  NOT NULL CHECK (export_type IN ('attendance', 'override-log')),
     record_count INTEGER      NOT NULL,
+    created_at   TIMESTAMPTZ  DEFAULT NOW()
+);
+
+-- Translation layer: maps a physical RFID badge number to a student identity.
+-- The hardware reader (backend/port.py) scans a badge_number and looks up the
+-- student here before writing attendance.
+CREATE TABLE badges (
+    badge_number VARCHAR(20)  PRIMARY KEY,
+    student_id   VARCHAR(10)  UNIQUE NOT NULL,
+    student_name VARCHAR(100) NOT NULL,
     created_at   TIMESTAMPTZ  DEFAULT NOW()
 );
 

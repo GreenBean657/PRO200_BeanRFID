@@ -202,6 +202,32 @@
   opacity: 0.6;
 }
 
+.badge-unenrolled {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+  white-space: nowrap;
+  background: rgba(255, 167, 38, 0.15);
+  color: #ffa726;
+  border: 1px solid rgba(255, 167, 38, 0.35);
+  cursor: help;
+}
+
+.row-unenrolled td {
+  background: rgba(255, 167, 38, 0.06);
+}
+
+/* keep the warning tint readable even on an absent (dimmed) row */
+.row-unenrolled.row-absent td {
+  opacity: 0.85;
+}
+
 
 .btn-override {
   padding: 0.28rem 0.7rem;
