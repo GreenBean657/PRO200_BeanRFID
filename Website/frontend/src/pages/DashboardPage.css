@@ -29,6 +29,50 @@
   margin: 0;
 }
 
+.day-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.3rem 0.4rem;
+}
+
+.day-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.3rem;
+  line-height: 1;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.day-nav-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.day-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.day-nav-label {
+  min-width: 11rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
 .loading-state,
 .error-state {
   text-align: center;

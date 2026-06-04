@@ -46,5 +46,12 @@ export interface Room {
   description: string;
 }
 
+export interface DailyAttendance {
+  date: string;    // YYYY-MM-DD
+  present: number; // students marked present that day
+  total: number;   // total attendance records that day
+  rate: number;    // present / total, as a 0–100 percentage
+}
+
 export type SortField = 'studentName' | 'studentId' | 'classId' | 'room' | 'present' | 'arrivedAt';
 export type SortDirection = 'asc' | 'desc';

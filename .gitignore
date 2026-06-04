@@ -28,6 +28,9 @@ dist/
 __pycache__/
 *.py[cod]
 
+# ── Internal docs (not for publication) ──────────────────────────────────────
+PROJECT_OVERVIEW.md
+
 # ── OS / Editor ──────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

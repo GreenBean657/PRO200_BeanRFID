@@ -1,4 +1,4 @@
-import { User, UserRole, AttendanceRecord, OverrideLog, ExportLog, Room } from '../types';
+import { User, UserRole, AttendanceRecord, OverrideLog, ExportLog, Room, DailyAttendance } from '../types';
 
 export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
@@ -38,13 +38,20 @@ export async function login(email: string, password: string): Promise<{ user: Us
   return body;
 }
 
-export async function getAttendance(rooms?: string[], classes?: string[]): Promise<AttendanceRecord[]> {
+export async function getAttendance(rooms?: string[], classes?: string[], date?: string): Promise<AttendanceRecord[]> {
   const params = new URLSearchParams();
   if (rooms?.length) params.set('rooms', rooms.join(','));
   if (classes?.length) params.set('classes', classes.join(','));
+  if (date) params.set('date', date);
   const query = params.size ? `?${params}` : '';
   const res = await apiFetch(`/attendance${query}`);
   if (!res.ok) throw new Error('Failed to load attendance.');
+  return res.json();
+}
+
+export async function getDailyAttendance(): Promise<DailyAttendance[]> {
+  const res = await apiFetch('/attendance/daily');
+  if (!res.ok) throw new Error('Failed to load attendance trend.');
   return res.json();
 }
 

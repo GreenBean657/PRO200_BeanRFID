@@ -115,7 +115,7 @@ app.post('/api/auth/login', loginLimiter, async (req, res) => {
 });
 
 app.get('/api/attendance', verifyToken, requireStaff, async (req, res) => {
-  const { classes } = req.query;
+  const { classes, date } = req.query;
   let requestedRooms = req.query.rooms ? req.query.rooms.split(',').map(r => r.trim()) : null;
 
   if (req.user.role === 'teacher') {
@@ -134,13 +134,50 @@ app.get('/api/attendance', verifyToken, requireStaff, async (req, res) => {
     params.push(classes.split(',').map(c => c.trim()));
     query += ` AND class_id = ANY($${params.length})`;
   }
+  if (date) {
+    params.push(date);
+    query += ` AND created_at::date = $${params.length}`;
+  }
 
   try {
     const result = await pool.query(query, params);
-    logAccess(req.user.id, 'GET /api/attendance', { rooms: requestedRooms, classes: classes ?? null });
+    logAccess(req.user.id, 'GET /api/attendance', { rooms: requestedRooms, classes: classes ?? null, date: date ?? null });
     res.json(result.rows.map(toRecord));
   } catch (err) {
     console.error('Attendance error:', err);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
+// Day-by-day attendance totals for the dashboard graph. Visible to every role;
+// teachers are scoped to their assigned rooms, admins and students see all.
+app.get('/api/attendance/daily', verifyToken, async (req, res) => {
+  let query = `
+    SELECT to_char(created_at::date, 'YYYY-MM-DD') AS day,
+           count(*)::int                           AS total,
+           count(*) FILTER (WHERE present)::int     AS present
+    FROM attendance
+  `;
+  const params = [];
+
+  if (req.user.role === 'teacher') {
+    params.push(req.user.assignedRooms);
+    query += ` WHERE room_id = ANY($${params.length})`;
+  }
+
+  query += ' GROUP BY day ORDER BY day';
+
+  try {
+    const result = await pool.query(query, params);
+    logAccess(req.user.id, 'GET /api/attendance/daily');
+    res.json(result.rows.map(row => ({
+      date: row.day,
+      present: row.present,
+      total: row.total,
+      rate: row.total ? Math.round((row.present / row.total) * 100) : 0,
+    })));
+  } catch (err) {
+    console.error('Daily attendance error:', err);
     res.status(500).json({ error: 'Internal server error.' });
   }
 });
