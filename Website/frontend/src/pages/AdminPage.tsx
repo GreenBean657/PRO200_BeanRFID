@@ -248,7 +248,7 @@ export default function AdminPage() {
   const [confirmDelete, setConfirmDelete] = useState<{ type: 'user' | 'room'; id: string; label: string } | null>(null);
 
   useEffect(() => {
-    const loads: Promise<any>[] = [getUsers(), getClasses()];
+    const loads: Promise<any>[] = [isAdmin ? getUsers() : Promise.resolve([]), getClasses()];
     if (isAdmin) loads.push(getRooms(), getOverrideLogs(), getExportLogs());
 
     Promise.all(loads).then(([u, cls, r, l, e]) => {

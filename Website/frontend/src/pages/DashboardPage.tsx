@@ -52,8 +52,9 @@ export default function DashboardPage() {
   // Reload the table whenever the selected day (or scope) changes.
   useEffect(() => {
     if (!selectedDate) return;
-    const allowedRooms = isAdmin || isStudent ? undefined : user?.assignedRooms;
-    const allowedClasses = isStudent ? (user?.assignedClasses ?? []) : undefined;
+    const taMode = isStudent && (user?.assignedRooms?.length ?? 0) > 0;
+    const allowedRooms = isAdmin ? undefined : user?.assignedRooms;
+    const allowedClasses = isStudent && !taMode ? (user?.assignedClasses ?? []) : undefined;
 
     let cancelled = false;
     async function load() {
@@ -114,9 +115,9 @@ export default function DashboardPage() {
             <p className="page-subtitle">
               {isAdmin
                 ? 'All rooms'
-                : isStudent
-                  ? `Classes: ${user?.assignedClasses?.join(', ')}`
-                  : `Rooms: ${user?.assignedRooms.join(', ')}`}
+                : isStudent && !(user?.assignedRooms?.length)
+                  ? `Classes: ${user?.assignedClasses?.join(', ') ?? 'None'}`
+                  : `Rooms: ${user?.assignedRooms?.join(', ')}`}
             </p>
           </div>
 

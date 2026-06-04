@@ -103,7 +103,7 @@ app.post('/api/auth/login', loginLimiter, async (req, res) => {
     }
     const user = toUser(dbUser);
     const token = jwt.sign(
-      { id: user.id, role: user.role, assignedRooms: user.assignedRooms },
+      { id: user.id, role: dbUser.role, assignedRooms: user.assignedRooms },
       JWT_SECRET,
       { expiresIn: '8h' },
     );
@@ -118,7 +118,7 @@ app.get('/api/attendance', verifyToken, requireStaff, async (req, res) => {
   const { classes, date } = req.query;
   let requestedRooms = req.query.rooms ? req.query.rooms.split(',').map(r => r.trim()) : null;
 
-  if (req.user.role === 'teacher') {
+  if (req.user.role === 'teacher' || req.user.role === 'assistant') {
     const allowed = req.user.assignedRooms;
     requestedRooms = requestedRooms ? requestedRooms.filter(r => allowed.includes(r)) : allowed;
   }
@@ -160,7 +160,7 @@ app.get('/api/attendance/daily', verifyToken, async (req, res) => {
   `;
   const params = [];
 
-  if (req.user.role === 'teacher') {
+  if (req.user.role === 'teacher' || req.user.role === 'assistant') {
     params.push(req.user.assignedRooms);
     query += ` WHERE room_id = ANY($${params.length})`;
   }
